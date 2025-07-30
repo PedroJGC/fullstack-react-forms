@@ -6,17 +6,20 @@ export default function App() {
 
   function onSubmit(e: React.FormEvent<HTMLElement>) {
     e.preventDefault()
+
+    setName('')
   }
 
   return (
     <div>
-      <h1>Evento {name}</h1>
+      <h1>Evento</h1>
 
       <form onSubmit={onSubmit}>
         <input
           onChange={(e) => setName(e.target.value)}
           placeholder="Nome do evento"
           type="text"
+          value={name} /* Faz com que o input se torne controlado. */
         />
         <span className="error">Nome é obrigatório</span>
 
