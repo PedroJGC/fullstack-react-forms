@@ -4,6 +4,7 @@ import './App.css'
 type FormData = {
   name: string
   data: string
+  subject: string
 }
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
     defaultValues: {
       name: '',
       data: '',
+      subject: '',
     },
   })
 
@@ -46,16 +48,22 @@ export default function App() {
           )}
         />
 
-        <select defaultValue="">
-          <option disabled value="">
-            Selecione...
-          </option>
+        <Controller
+          control={control}
+          name="subject"
+          render={({ field }) => (
+            <select {...field}>
+              <option disabled value="">
+                Selecione...
+              </option>
 
-          <option value="technology">React</option>
-          <option value="entertainment">Node.js</option>
-          <option value="business">Javascript</option>
-          <option value="business">Typescript</option>
-        </select>
+              <option value="react">React</option>
+              <option value="nodejs">Node.js</option>
+              <option value="javascript">Javascript</option>
+              <option value="typescript">Typescript</option>
+            </select>
+          )}
+        />
 
         <textarea placeholder="Descrição" rows={4} />
 
