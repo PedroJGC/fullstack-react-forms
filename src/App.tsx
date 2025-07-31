@@ -3,12 +3,14 @@ import './App.css'
 
 type FormData = {
   name: string
+  data: string
 }
 
 export default function App() {
   const { control, handleSubmit } = useForm<FormData>({
     defaultValues: {
       name: '',
+      data: '',
     },
   })
 
@@ -31,7 +33,18 @@ export default function App() {
 
         <span className="error">Nome é obrigatório</span>
 
-        <input lang="pt-BR" placeholder="Nome do evento" type="date" />
+        <Controller
+          control={control}
+          name="data"
+          render={({ field }) => (
+            <input
+              lang="pt-BR"
+              placeholder="Nome do evento"
+              type="date"
+              {...field}
+            />
+          )}
+        />
 
         <select defaultValue="">
           <option disabled value="">
