@@ -6,18 +6,26 @@ import * as yup from 'yup'
 
 type FormData = {
   name: string
-  data: string
+  date: string
   subject: string
   description: string
 }
 
-const schema = yup.object({})
+const schema = yup.object({
+  name: yup.string().required('Nome é obrigatório'),
+  date: yup.string().required('Data é obrigatória'),
+  subject: yup.string().required('Selecione um assunto'),
+  description: yup
+    .string()
+    .required('Descrição é obrigatória')
+    .min(10, 'A descrição precisa ter pelo menos 10 dígitos'),
+})
 
 export default function App() {
   const { control, handleSubmit } = useForm<FormData>({
     defaultValues: {
       name: '',
-      data: '',
+      date: '',
       subject: '',
       description: '',
     },
@@ -46,7 +54,7 @@ export default function App() {
 
         <Controller
           control={control}
-          name="data"
+          name="date"
           render={({ field }) => (
             <input
               lang="pt-BR"
